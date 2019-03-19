@@ -1,0 +1,89 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 56.3287
+  longitude: 44.002
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 141
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Moscow
+  # Customization file
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Show the introduction message on startup.
+introduction:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  # oleg: added external address
+  base_url: !secret base_url_kazansk
+  #   base_url: example.duckdns.org:8123
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+  # oleg
+  - platform: random
+
+# Text to speech
+tts:
+  - platform: google
+
+# Oleg
+discovery:
+
+# Oleg. Based on advise from https://community.home-assistant.io/t/add-appletv-to-hass/29457/2
+apple_tv:
+
+group: !include groups.yaml
+# oleg automation: !include automations.yaml
+script: !include scripts.yaml
+
+# Oleg
+# enabled configurator in HA left pane 
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://192.168.0.10:3218/
+
+# Oleg
+camera:
+  - platform: generic
+    name: "HikVision1"
+    still_image_url: !secret HikVision1_url
+    verify_ssl: false
+    #authentication: basic
+    username: admin
+    password: !secret HikVision1_pass
+
+automation:
+# Oleg: https://www.home-assistant.io/getting-started/automation/
+  - alias: Check sensor value and show notification
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.random_sensor
+      above: 10
+    action:
+      service: persistent_notification.create
+      data:
+        message: "Sensor value greater than 10"
+
+# Oleg: IFTTT https://www.home-assistant.io/components/ifttt/
+  - trigger:
+      platform: event
+      event_type: ifttt_webhook_received
+      event_data:
+        action: call_service
+    action:
+      service_template: '{{ trigger.event.data.service }}'
+      data_template:
+        entity_id: '{{ trigger.event.data.entity_id }}'
+  
