@@ -33,7 +33,7 @@ sensor:
   # Weather prediction
   - platform: yr
   # oleg
-  - platform: random
+  # - platform: random
 
 # Text to speech
 tts:
