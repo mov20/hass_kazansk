@@ -1,5 +1,6 @@
 # HomeAssistant Configuration file 
 # Stores configuration at kazansk
+#
 
 homeassistant:
   # Name of the location where Home Assistant is running
