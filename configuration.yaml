@@ -67,6 +67,10 @@ camera:
     username: admin
     password: !secret HikVision1_pass
 
+# Oleg
+homekit:
+
+
 automation:
 # Oleg: https://www.home-assistant.io/getting-started/automation/
   - alias: Check sensor value and show notification
