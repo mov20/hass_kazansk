@@ -1,6 +1,7 @@
 # HomeAssistant Configuration file 
 # Stores configuration at kazansk
 #
+#
 
 homeassistant:
   # Name of the location where Home Assistant is running
@@ -29,6 +30,15 @@ http:
   base_url: !secret base_url_kazansk
   #   base_url: example.duckdns.org:8123
 
+# oleg
+# yeelight
+yeelight:
+  devices:
+    192.168.0.30:
+      name: Bedroom
+    192.168.0.31:
+      name: Prihozhaya
+
 # Sensors
 sensor:
   # Weather prediction
@@ -42,6 +52,8 @@ tts:
 
 # Oleg
 discovery:
+  ignore:
+    - yeelight
 
 # Oleg. Based on advise from https://community.home-assistant.io/t/add-appletv-to-hass/29457/2
 apple_tv:
