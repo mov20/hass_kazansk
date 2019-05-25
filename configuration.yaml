@@ -48,7 +48,8 @@ sensor:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 # Oleg
 discovery:
@@ -74,7 +75,7 @@ panel_iframe:
 camera:
   - platform: generic
     name: "HikVision1"
-    still_image_url: !secret HikVision1_url
+    still_image_url: http://192.168.0.20/ISAPI/Streaming/channels/101/picture
     verify_ssl: false
     #authentication: basic
     username: admin
