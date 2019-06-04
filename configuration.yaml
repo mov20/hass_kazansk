@@ -105,3 +105,10 @@ automation:
       data_template:
         entity_id: '{{ trigger.event.data.entity_id }}'
   
+#Oleg
+# You can leave MAC empty if you only have one gateway.
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: BEAC13AF076A4F58
+
