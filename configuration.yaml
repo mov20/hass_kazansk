@@ -31,9 +31,9 @@ http:
 # yeelight
 yeelight:
   devices:
-    192.168.0.30:
+    192.168.2.30:
       name: Bedroom
-    192.168.0.31:
+    192.168.2.31:
       name: Prihozhaya
 
 # Sensors
