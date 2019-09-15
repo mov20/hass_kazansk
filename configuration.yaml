@@ -104,7 +104,21 @@ automation:
       service_template: '{{ trigger.event.data.service }}'
       data_template:
         entity_id: '{{ trigger.event.data.entity_id }}'
-  
+# Oleg: Weather outside is cold
+  - alias: Weather light turns blue if weather outside is below 10
+    trigger:
+      platform: numeric_state
+      entity_id: weather.apartment
+      below: 10
+    action:
+      service: light.turn_on
+      entity_id: light.gateway_light_04cf8c97ded8
+      data:
+        color_name: blue
+        brightness: 120
+
+
+
 #Oleg
 # You can leave MAC empty if you only have one gateway.
 xiaomi_aqara:
